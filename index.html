@@ -1,0 +1,628 @@
+<!-- /index.html -->
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="就活用ポートフォリオ。プロフィール、スキル、制作物、連絡先を掲載しています。" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- OGP -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="tomoki1639 | Portfolio" />
+  <meta property="og:description" content="就活用ポートフォリオ。プロフィール、スキル、制作物、連絡先。" />
+  <meta property="og:url" content="https://tomoki1639.github.io" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title>Your Name | Portfolio</title>
+
+  <!-- JSON-LD (最低限) -->
+  <script type="application/ld+json">
+  {
+    "@type":"Person",
+    "name":"Tomoki Nakayama",
+    "url":"https://tomoki1639.github.io",
+    "sameAs":[
+      "https://github.com/tomoki1639"
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --panel:#0f1624;
+      --text:#e7edf6;
+      --muted:#9fb0c6;
+      --line:rgba(255,255,255,.10);
+      --brand:#7aa7ff;
+      --brand2:#9bffd5;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(122,167,255,.25), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(155,255,213,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ opacity:.9; }
+
+    .container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border:1px solid var(--line); border-radius:999px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+      backdrop-filter: blur(8px);
+    }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background: rgba(11,15,23,.65);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
+    }
+    .brand{
+      display:flex; align-items:baseline; gap:10px;
+      font-weight:700; letter-spacing:.2px;
+    }
+    .brand small{ color:var(--muted); font-weight:600; }
+
+    .navlinks{
+      display:flex; align-items:center; gap:14px;
+    }
+    .navlinks a{
+      padding:8px 10px;
+      border-radius:999px;
+      color: var(--muted);
+      border:1px solid transparent;
+      font-weight:600;
+      font-size:14px;
+    }
+    .navlinks a[data-active="true"]{
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.05);
+    }
+
+    .navbtn{
+      display:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      border-radius:12px;
+      padding:10px 12px;
+      cursor:pointer;
+    }
+
+    .mobilepanel{
+      display:none;
+      padding: 10px 0 16px;
+    }
+    .mobilepanel a{
+      display:block;
+      padding:12px 10px;
+      border-radius:12px;
+      color: var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      margin-top:10px;
+      font-weight:600;
+    }
+
+    main{ padding: 26px 0 80px; }
+
+    .hero{
+      padding: 36px 0 18px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+    .hero h1{
+      margin: 10px 0 10px;
+      font-size: clamp(28px, 3.8vw, 44px);
+      line-height:1.12;
+      letter-spacing:.2px;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 15.5px;
+    }
+    .row{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      font-weight:700;
+      font-size:14px;
+      cursor:pointer;
+      background: rgba(255,255,255,.04);
+    }
+    .btn.primary{
+      border-color: rgba(122,167,255,.35);
+      background: linear-gradient(135deg, rgba(122,167,255,.22), rgba(155,255,213,.12));
+    }
+    .btn span{ color: var(--muted); font-weight:700; }
+
+    .stats{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .stat{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(0,0,0,.08);
+    }
+    .stat strong{ display:block; font-size:18px; }
+    .stat em{ display:block; color: var(--muted); font-style:normal; font-size:13px; margin-top:2px; }
+
+    section{ padding: 28px 0; }
+    .section-title{
+      display:flex; align-items:end; justify-content:space-between; gap:16px;
+      margin: 0 0 14px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 20px;
+      letter-spacing:.3px;
+    }
+    .section-title p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13.5px;
+      max-width: 520px;
+      text-align:right;
+    }
+
+    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    .grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+
+    .list{
+      margin: 10px 0 0;
+      padding: 0 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .skill-group h3{
+      margin:0 0 10px;
+      font-size: 15px;
+      letter-spacing:.2px;
+    }
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+    .tag{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight:650;
+    }
+
+    .works .work{
+      display:flex; flex-direction:column; gap:10px;
+      height:100%;
+    }
+    .work h3{ margin:0; font-size: 16px; }
+    .work p{ margin:0; color: var(--muted); font-size:14px; }
+    .work .meta{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top:2px;
+    }
+    .work .links{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:auto;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .kpi{
+      display:flex; flex-direction:column; gap:10px;
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      padding: 18px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px){
+      .hero-grid, .contact-grid{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px){
+      .navlinks{ display:none; }
+      .navbtn{ display:inline-flex; }
+      .mobilepanel[data-open="true"]{ display:block; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <a href="#top" aria-label="Top">Your Name</a>
+        <small>Web Engineer</small>
+      </div>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#profile">PROFILE</a>
+        <a href="#skill">SKILL</a>
+        <a href="#works">WORKS</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+
+      <button class="navbtn" id="navToggle" aria-expanded="false" aria-controls="mobilepanel">
+        Menu
+      </button>
+    </div>
+
+    <div id="mobilepanel" class="mobilepanel" data-open="false" aria-label="Mobile Menu">
+      <a href="#profile">PROFILE</a>
+      <a href="#skill">SKILL</a>
+      <a href="#works">WORKS</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="container hero">
+    <div class="hero-grid">
+      <div class="card">
+        <span class="chip">#就活用ポートフォリオ</span>
+        <h1>作る力で価値を出す<br/>Your Name</h1>
+        <p>
+          例：フロント〜バックエンドまで、ユーザー価値から逆算して設計・実装できます。<br/>
+          例：改善サイクル（計測→仮説→実装→検証）を回すのが得意です。
+        </p>
+
+        <div class="row" style="margin-top:16px;">
+          <a class="btn primary" href="#works">制作物を見る <span>→</span></a>
+          <a class="btn" href="https://github.com/YOURNAME" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          <a class="btn" href="https://x.com/YOURNAME" target="_blank" rel="noreferrer">X <span>↗</span></a>
+          <a class="btn" href="mailto:your.email@example.com">Mail <span>✉</span></a>
+        </div>
+
+        <ul class="list">
+          <li>志望：Webエンジニア（例：フロント/フルスタック）</li>
+          <li>興味：例）UI/UX、パフォーマンス、設計、セキュリティ</li>
+          <li>希望：例）東京 / リモート可</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="stats">
+          <div class="stat">
+            <strong>3+</strong>
+            <em>制作物（公開）</em>
+          </div>
+          <div class="stat">
+            <strong>2</strong>
+            <em>長期開発（半年以上）</em>
+          </div>
+          <div class="stat">
+            <strong>TypeScript</strong>
+            <em>主言語（例）</em>
+          </div>
+          <div class="stat">
+            <strong>React</strong>
+            <em>得意領域（例）</em>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <div class="chip">推しポイント</div>
+          <ul class="list">
+            <li>例：機能追加より「ユーザー課題→最小実装→改善」を重視</li>
+            <li>例：設計（責務分離・型・テスト）で保守性を担保</li>
+            <li>例：チーム開発（PR運用・レビュー）経験あり</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="profile">
+    <div class="container">
+      <div class="section-title">
+        <h2>PROFILE</h2>
+        <p>「何ができるか」を一言で言える形にすると刺さります</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin:0 0 10px;">自己紹介</h3>
+          <p style="margin:0; color:var(--muted); font-size:14.5px;">
+            はじめまして、Your Nameです。例：大学/専門で◯◯を学び、現在は◯◯を中心に開発しています。
+            就活では、例：Webアプリ開発を通じて「ユーザーの課題を解く」ことに価値を感じています。
+          </p>
+
+          <ul class="list">
+            <li>強み：例）実装スピード + 品質（型/テスト/設計）</li>
+            <li>得意：例）UI実装、API設計、DB設計、性能改善</li>
+            <li>やりたい：例）ユーザー体験に直結するプロダクト開発</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px;">経歴（サマリ）</h3>
+          <ul class="list">
+            <li>202X-202X：例）インターン（React/Next.js）</li>
+            <li>202X：例）個人開発（SaaS/ToDo/家計簿など）</li>
+            <li>202X：例）チーム開発（ハッカソン/コンテスト）</li>
+          </ul>
+
+          <div style="margin-top:12px;" class="tags" aria-label="Highlights">
+            <span class="tag">設計</span>
+            <span class="tag">型安全</span>
+            <span class="tag">性能</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">チーム開発</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skill">
+    <div class="container">
+      <div class="section-title">
+        <h2>SKILL</h2>
+        <p>「できる/できない」より「何をどれだけ作ったか」を書くと強い</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card skill-group">
+          <h3>フロントエンド</h3>
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Tailwind</span>
+            <span class="tag">Vite</span>
+          </div>
+          <ul class="list">
+            <li>例：コンポーネント設計、状態管理、アクセシビリティ</li>
+            <li>例：Lighthouse改善、画像最適化、コード分割</li>
+          </ul>
+        </div>
+
+        <div class="card skill-group">
+          <h3>バックエンド</h3>
+          <div class="tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">REST</span>
+            <span class="tag">Auth</span>
+            <span class="tag">OpenAPI</span>
+          </div>
+          <ul class="list">
+            <li>例：認証（JWT/OAuth）、バリデーション、例外設計</li>
+            <li>例：テーブル設計、N+1対策、インデックス</li>
+          </ul>
+        </div>
+
+        <div class="card skill-group">
+          <h3>開発環境 / 運用</h3>
+          <div class="tags">
+            <span class="tag">Git/GitHub</span>
+            <span class="tag">CI</span>
+            <span class="tag">Docker</span>
+            <span class="tag">AWS</span>
+            <span class="tag">Testing</span>
+          </div>
+          <ul class="list">
+            <li>例：PR運用、レビュー、Issue駆動</li>
+            <li>例：CIでlint/test、デプロイ自動化</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="works" class="works">
+    <div class="container">
+      <div class="section-title">
+        <h2>WORKS</h2>
+        <p>各作品に「役割 / 工夫 / 成果（数字）」を1行でも入れると一気に強くなります</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card work">
+          <h3>プロジェクト名A（例：学習管理Webアプリ）</h3>
+          <p>概要：例）学習ログを可視化し、継続を支援するWebアプリ。</p>
+          <div class="meta">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Firebase</span>
+          </div>
+          <ul class="list">
+            <li>役割：例）フロント全般 + DB設計</li>
+            <li>工夫：例）フォームの型安全/バリデーション、表示速度改善</li>
+            <li>成果：例）友人10名が継続利用（任意）</li>
+          </ul>
+          <div class="links">
+            <a class="btn" href="https://example.com" target="_blank" rel="noreferrer">Demo <span>↗</span></a>
+            <a class="btn" href="https://github.com/YOURNAME/project-a" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          </div>
+        </article>
+
+        <article class="card work">
+          <h3>プロジェクト名B（例：チーム開発ToDo）</h3>
+          <p>概要：例）チームでタスクを管理、権限/招待機能あり。</p>
+          <div class="meta">
+            <span class="tag">Next.js</span>
+            <span class="tag">API</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+          <ul class="list">
+            <li>役割：例）API設計、認証、レビュー運用</li>
+            <li>工夫：例）OpenAPIで仕様共有、E2Eテスト導入</li>
+            <li>成果：例）不具合件数を◯%削減（任意）</li>
+          </ul>
+          <div class="links">
+            <a class="btn" href="https://example.com" target="_blank" rel="noreferrer">Demo <span>↗</span></a>
+            <a class="btn" href="https://github.com/YOURNAME/project-b" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          </div>
+        </article>
+
+        <article class="card work">
+          <h3>プロジェクト名C（例：スクレイピング分析）</h3>
+          <p>概要：例）公開データを収集し、傾向を可視化。</p>
+          <div class="meta">
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">CLI</span>
+          </div>
+          <ul class="list">
+            <li>役割：例）設計〜実装〜可視化</li>
+            <li>工夫：例）再実行性、例外処理、ログ、設定ファイル</li>
+            <li>成果：例）手作業◯時間→◯分に短縮（任意）</li>
+          </ul>
+          <div class="links">
+            <a class="btn" href="https://github.com/YOURNAME/project-c" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>CONTACT</h2>
+        <p>面談の導線：メール / GitHub / SNS を最低限置く</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card">
+          <h3 style="margin:0 0 10px;">連絡先</h3>
+          <p style="margin:0; color:var(--muted); font-size:14.5px;">
+            ご連絡はメールが確実です。SNSのDMでもOKです。
+          </p>
+
+          <div class="row" style="margin-top:14px;">
+            <a class="btn primary" href="mailto:your.email@example.com">your.email@example.com <span>✉</span></a>
+            <a class="btn" href="https://github.com/YOURNAME" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+            <a class="btn" href="https://x.com/YOURNAME" target="_blank" rel="noreferrer">X <span>↗</span></a>
+            <a class="btn" href="https://www.wantedly.com/users/YOURNAME" target="_blank" rel="noreferrer">Wantedly <span>↗</span></a>
+          </div>
+
+          <ul class="list">
+            <li>職務経歴書：PDF/Notionリンク（任意）</li>
+            <li>技術記事：Zenn/Qiita（任意）</li>
+          </ul>
+        </div>
+
+        <div class="card kpi">
+          <div class="chip">就活向けチェック</div>
+          <ul class="list">
+            <li>各WORKに「役割」「工夫」「成果（数字）」がある</li>
+            <li>GitHubが整理されている（README / 手順 / 画面）</li>
+            <li>トップ1行で「何ができる人か」がわかる</li>
+          </ul>
+
+          <a class="btn" href="#top">トップへ戻る <span>↑</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> Your Name. All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+
+  $("#year").textContent = String(new Date().getFullYear());
+
+  const toggleBtn = $("#navToggle");
+  const mobilePanel = $("#mobilepanel");
+
+  function setMobile(open){
+    mobilePanel.dataset.open = open ? "true" : "false";
+    toggleBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  toggleBtn?.addEventListener("click", () => {
+    const open = mobilePanel.dataset.open !== "true";
+    setMobile(open);
+  });
+
+  $$("#mobilepanel a").forEach(a => {
+    a.addEventListener("click", () => setMobile(false));
+  });
+
+  const sections = ["profile","skill","works","contact"].map(id => document.getElementById(id)).filter(Boolean);
+  const navLinks = [...$$(".navlinks a"), ...$$("#mobilepanel a")];
+
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if(!visible) return;
+
+    const id = visible.target.id;
+    navLinks.forEach(a => {
+      const active = (a.getAttribute("href") === `#${id}`);
+      a.dataset.active = active ? "true" : "false";
+    });
+  }, { rootMargin: "-35% 0px -55% 0px", threshold: [0.1, 0.2, 0.35, 0.5] });
+
+  sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
