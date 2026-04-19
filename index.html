@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tomoki Nakayama – Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f6f2; --surface: #ffffff; --text: #181816; --muted: #72726c;
+    --faint: #a8a8a0; --accent: #1e3a52; --accent-mid: #3a6280;
+    --accent-light: #eaf0f5; --border: rgba(24,24,22,0.09);
+    --border-mid: rgba(24,24,22,0.16);
+    --serif: 'Crimson Pro', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; height: 54px; background: rgba(247,246,242,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--serif); font-size: 19px; font-weight: 300; color: var(--text); text-decoration: none; }
+  .nav-links { list-style: none; display: flex; gap: 2.25rem; }
+  .nav-links a { font-size: 12.5px; color: var(--muted); text-decoration: none; letter-spacing: 0.04em; transition: color 0.18s; }
+  .nav-links a:hover { color: var(--text); }
+  .hero { min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 2rem 3rem; }
+  .hero-avatar { width: 88px; height: 88px; border-radius: 50%; background: var(--accent-light); border: 1px solid rgba(30,58,82,0.15); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 24px; font-weight: 300; font-style: italic; color: var(--accent-mid); margin-bottom: 1.1rem; }
+  .hero h1 { font-family: var(--serif); font-size: 36px; font-weight: 300; margin-bottom: 0.5rem; letter-spacing: 0.01em; }
+  .hero-sub { font-size: 13.5px; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.65; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+  .tag { background: var(--surface); color: var(--muted); border: 1px solid var(--border-mid); border-radius: 999px; font-size: 12px; padding: 4px 15px; letter-spacing: 0.02em; transition: border-color 0.18s, color 0.18s; }
+  .tag:hover { color: var(--accent); border-color: rgba(30,58,82,0.3); }
+  .hero-divider { width: 32px; height: 1px; background: var(--border-mid); margin-top: 1.75rem; }
+  .section { max-width: 860px; margin: 0 auto; padding: 3rem 2.5rem; }
+  .section + .section { border-top: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.25rem; margin-bottom: 1.75rem; }
+  .section-label { font-family: var(--serif); font-size: 26px; font-weight: 300; font-style: italic; color: var(--text); white-space: nowrap; }
+  .section-rule { flex: 1; height: 1px; background: var(--border); position: relative; top: -3px; }
+  .section-grid { display: grid; grid-template-columns: 148px 1fr; gap: 1.5rem 3rem; align-items: start; }
+  .grid-label { font-size: 11.5px; font-weight: 500; color: var(--faint); letter-spacing: 0.09em; text-transform: uppercase; padding-top: 4px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 0.7rem; transition: border-color 0.2s, box-shadow 0.2s; }
+  .card:last-child { margin-bottom: 0; }
+  .card:hover { border-color: rgba(30,58,82,0.2); box-shadow: 0 2px 14px rgba(30,58,82,0.05); }
+  .card-title { font-size: 14.5px; font-weight: 500; margin-bottom: 0.3rem; line-height: 1.45; }
+  .card-body { font-size: 13px; color: var(--muted); line-height: 1.8; }
+  .card-body a { color: var(--accent-mid); text-decoration: none; border-bottom: 1px solid rgba(58,98,128,0.25); transition: border-color 0.15s; }
+  .card-body a:hover { border-color: var(--accent-mid); }
+  .card-meta { font-size: 11.5px; color: var(--faint); margin-top: 0.75rem; }
+  .pub-card { background: var(--surface); border: 1px solid var(--border); border-left: 2px solid var(--accent-mid); border-radius: 0 10px 10px 0; padding: 0.9rem 1.25rem; margin-bottom: 0.6rem; }
+  .pub-card:last-child { margin-bottom: 0; }
+  .pub-card:hover { border-color: rgba(30,58,82,0.22); }
+  .pub-title { font-size: 13.5px; font-weight: 500; line-height: 1.55; margin-bottom: 0.3rem; }
+  .pub-venue { font-size: 12px; color: var(--muted); font-style: italic; }
+  .activity-list { list-style: none; }
+  .activity-list li { display: flex; align-items: baseline; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+  .activity-list li:first-child { padding-top: 0; }
+  .activity-list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .activity-list .year { font-size: 11.5px; color: var(--faint); min-width: 38px; letter-spacing: 0.04em; flex-shrink: 0; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+  .contact-link { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border-mid); border-radius: 8px; padding: 9px 20px; font-size: 13px; color: var(--text); text-decoration: none; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+  .contact-link:hover { background: var(--accent-light); border-color: rgba(30,58,82,0.3); color: var(--accent); }
+  .contact-icon { width: 15px; height: 15px; opacity: 0.5; flex-shrink: 0; }
+  footer { border-top: 1px solid var(--border); text-align: center; padding: 2.5rem; font-size: 12px; color: var(--faint); letter-spacing: 0.04em; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .hero > * { animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+  .hero-avatar { animation-delay: 0.05s; } .hero h1 { animation-delay: 0.13s; }
+  .hero-sub { animation-delay: 0.20s; } .tag-row { animation-delay: 0.27s; }
+  .hero-divider { animation-delay: 0.34s; }
+  @media (max-width: 680px) {
+    nav { padding: 0 1.25rem; } .nav-links { gap: 1.25rem; } .nav-links a { font-size: 12px; }
+    .section { padding: 2rem 1.25rem; } .section-grid { grid-template-columns: 1fr; gap: 0.6rem 0; }
+    .grid-label { margin-bottom: -0.2rem; }
+  }
+</style>
+</head>
+<script>history.scrollRestoration = 'manual';</script>
+<body>
+
+<nav>
+  <a href="#top" class="nav-logo">Portfolio</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero" id="top">
+  <div class="hero-avatar">NT</div>
+  <h1>Tomoki Nakayama</h1>
+  <p class="hero-sub">M1 · 愛媛大学大学院 理工学研究科 理工学専攻<br>計算機・ソフトウェアシステム研究室</p>
+  <div class="tag-row">
+    <span class="tag">セキュリティ</span>
+    <span class="tag">IoTプロトコル</span>
+    <span class="tag">認証方式</span>
+    <span class="tag">LPWA技術</span>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<section class="section" id="about">
+  <div class="section-header">
+    <span class="section-label">About</span>
+    <span class="section-rule"></span>
+  </div>
+  <div class="section-grid">
+    <div class="grid-label">自己紹介</div>
+    <div class="grid-content">
+      <div class="card">
+        <p class="card-body">
+          専攻：愛媛大学大学院 理工学研究科 理工学専攻<br>
+          学年：M1<br>
+          研究内容：セキュリティ・認証方式<br>
+          研究室：<a href="https://www.hpc.cs.ehime-u.ac.jp/" target="_blank" rel="noopener">ソフトウェアシステム研究室</a>
+        </p>
+      </div>
+    </div>
+    <div class="grid-label">学歴</div>
+    <div class="grid-content">
+      <div class="card">
+        <p class="card-title">愛媛大学大学院 理工学研究科 理工学専攻</p>
+        <p class="card-body">修士課程</p>
+        <p class="card-meta">2024年4月 – 2026年3月（予定）</p>
+      </div>
+      <div class="card">
+        <p class="card-title">愛媛大学 工学部 工学科 応用情報工学コース</p>
+        <p class="card-body">学士課程</p>
+        <p class="card-meta">2020年4月 – 2024年3月</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="research">
+  <div class="section-header">
+    <span class="section-label">Research</span>
+    <span class="section-rule"></span>
+  </div>
+  <div class="section-grid">
+    <div class="grid-label">修士研究</div>
+    <div class="grid-content">
+      <div class="card">
+        <p class="card-title">準備中</p>
+        <p class="card-body">現在テーマを検討中です。</p>
+        <p class="card-meta">2024年4月〜現在</p>
+      </div>
+    </div>
+    <div class="grid-label">学部研究</div>
+    <div class="grid-content">
+      <div class="card">
+        <p class="card-title">SAS-L2 を用いた LoRaWAN の認証方式に関する研究</p>
+        <p class="card-body">IoT 向け低消費電力広域通信規格 LoRaWAN において、SAS-L2 を適用した軽量かつ安全な認証方式の設計および実機評価を行いました。</p>
+        <p class="card-meta">2023年4月 – 2024年3月</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="publications">
+  <div class="section-header">
+    <span class="section-label">Publications &amp; Activities</span>
+    <span class="section-rule"></span>
+  </div>
+  <div class="section-grid">
+    <div class="grid-label">論文・発表</div>
+    <div class="grid-content">
+      <div class="pub-card">
+        <p class="pub-title">準備中</p>
+        <p class="pub-venue">近日掲載予定</p>
+      </div>
+    </div>
+    <div class="grid-label">活動</div>
+    <div class="grid-content">
+      <div class="card">
+        <ul class="activity-list">
+          <li><span class="year">2025</span><span>技育CAMP2024ハッカソンに参加</span></li>
+          <li><span class="year">2025</span><span>セキュリティシンポジウム道後 — 広報スタッフ</span></li>
+          <li><span class="year">2026</span><span>セキュリティシンポジウム道後 — 広報スタッフ</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-header">
+    <span class="section-label">Contact</span>
+    <span class="section-rule"></span>
+  </div>
+  <div class="section-grid">
+    <div class="grid-label">連絡先</div>
+    <div class="grid-content">
+      <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:1rem">下記の連絡先までご連絡ください。</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:march.9.tomonaka@gmail.com">
+          <svg class="contact-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg>
+          メール
+        </a>
+        <a class="contact-link" href="https://github.com/tomoki1639" target="_blank" rel="noopener">
+          <svg class="contact-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.014-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.138 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Tomoki Nakayama</footer>
+
+</body>
+</html>
